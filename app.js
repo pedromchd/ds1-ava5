@@ -1,6 +1,9 @@
 const express = require('express');
 const { engine } = require('express-handlebars');
 const router = require('./routes/router');
+const sequelize = require('./database/config');
+
+sequelize.sync();
 
 const app = express();
 
