@@ -1,4 +1,3 @@
-require('dotenv').config();
 const express = require('express');
 const { engine } = require('express-handlebars');
 const handlebars = require('handlebars');
@@ -8,15 +7,12 @@ const flash = require('connect-flash');
 const router = require('./routes/router');
 const sequelize = require('./config/database');
 
-const PORT = process.env.PORT || 3000;
-const HOST = process.env.HOST || '127.0.0.1';
-
 sequelize.sync();
 
 const app = express();
 
 app.use(session({
-    secret: process.env.SECRET_KEY,
+    secret: 'A1B2C3D4E5',
     resave: true,
     saveUninitialized: true
 }));
@@ -39,6 +35,6 @@ app.set('views', './views');
 
 app.use(router);
 
-app.listen(PORT, HOST, () => {
-    console.log(`App listening on http://${HOST}:${PORT}`);
+app.listen(3000, () => {
+    console.log(`App listening on port 3000`);
 });
