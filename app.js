@@ -27,11 +27,12 @@ app.use((req, res, next) => {
 
 app.engine('.hbs', engine({ 
     extname: '.hbs', 
-    defaultLayout: false, 
     handlebars: allowInsecurePrototypeAccess(handlebars)
 }));
 app.set('view engine', '.hbs');
 app.set('views', './views');
+
+app.use(express.static('./public'));
 
 app.use(router);
 
