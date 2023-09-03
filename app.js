@@ -8,6 +8,9 @@ const flash = require('connect-flash');
 const router = require('./routes/router');
 const sequelize = require('./config/database');
 
+const PORT = process.env.PORT || 3000;
+const HOST = process.env.HOST || '127.0.0.1';
+
 sequelize.sync();
 
 const app = express();
@@ -36,6 +39,6 @@ app.set('views', './views');
 
 app.use(router);
 
-app.listen(3000, () => {
-    console.log(`App listening on port 3000`);
+app.listen(PORT, HOST, () => {
+    console.log(`App listening on http://${HOST}:${PORT}`);
 });
