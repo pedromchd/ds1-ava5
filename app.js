@@ -2,6 +2,7 @@ const express = require('express');
 const { engine } = require('express-handlebars');
 const handlebars = require('handlebars');
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
+const bodyParser = require('body-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
 const router = require('./routes/router');
@@ -10,6 +11,9 @@ const sequelize = require('./config/database');
 sequelize.sync();
 
 const app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(session({
     secret: 'A1B2C3D4E5',
