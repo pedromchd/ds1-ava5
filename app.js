@@ -4,6 +4,7 @@ const { engine } = require('express-handlebars');
 const handlebars = require('handlebars');
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
 const session = require('express-session');
+const flash = require('connect-flash');
 const router = require('./routes/router');
 const sequelize = require('./config/database');
 
@@ -16,6 +17,14 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
+
+app.use(flash());
+app.use((req, res, next) => {
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    res.locals.errors = req.session.errors;
+    next();
+});
 
 app.engine('.hbs', engine({ 
     extname: '.hbs', 
