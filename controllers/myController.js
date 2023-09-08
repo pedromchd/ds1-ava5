@@ -2,7 +2,7 @@ const { validationResult } = require('express-validator');
 const User = require('../models/User');
 
 exports.add = (req, res) => {
-    res.render('pages/create', { title: 'Adicionar' });
+    return res.render('pages/create', { title: 'Adicionar' });
 }
 
 exports.create = async (req, res) => {
@@ -15,10 +15,10 @@ exports.create = async (req, res) => {
     const { firstName, lastName } = req.body;
     await User.create({ firstName, lastName });
     req.flash('success', 'Usuário adicionado com sucesso!');
-    res.redirect('/');
+    return res.redirect('/');
 }
 
 exports.show = async (req, res) => {
     const results = await User.findAll();
-    res.render('pages/read', { title: 'Mostrar', results });
+    return res.render('pages/read', { title: 'Mostrar', results });
 };
