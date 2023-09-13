@@ -5,6 +5,7 @@ const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-ac
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
+const path = require('path');
 const router = require('./routes/router');
 const sequelize = require('./config/database');
 
@@ -15,9 +16,9 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(session({
-    secret: 'A1B2C3D4E5',
-    resave: true,
-    saveUninitialized: true
+    secret: 'shhhh, very secret',
+    resave: false,
+    saveUninitialized: false
 }));
 
 app.use(flash());
@@ -33,9 +34,9 @@ app.engine('.hbs', engine({
     handlebars: allowInsecurePrototypeAccess(handlebars)
 }));
 app.set('view engine', '.hbs');
-app.set('views', './views');
+app.set('views', path.join(__dirname, 'views'));
 
-app.use(express.static('./public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(router);
 
