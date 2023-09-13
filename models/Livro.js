@@ -1,30 +1,37 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
-const Livro = require('./Livro')
+const User = require('./User');
 
-const User = sequelize.define('User', {
+const Livro = sequelize.define('Livro', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    nome: {
+    titulo: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
+    ano: {
+        type: DataTypes.INTEGER,
+        allowNull: false
     },
-    senha: {
+    autor: {
         type: DataTypes.STRING,
+        allowNull: false
+    },
+    editora: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    quantidade: {
+        type: DataTypes.INTEGER,
         allowNull: false
     }
 }, {
     timestamps: false
 });
 
-User.hasMany(Livro, { through: 'Emprestimo' });
+Livro.belongsToMany(User, { through: 'Emprestimo' });
 
-module.exports = User;
+module.exports = Livro;
