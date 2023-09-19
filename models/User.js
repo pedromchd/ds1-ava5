@@ -25,6 +25,7 @@ const User = sequelize.define('User', {
     timestamps: false
 });
 
-User.hasMany(Livro, { through: 'Emprestimo' });
+User.belongsToMany(Livro, { through: 'Emprestimo' });
+Livro.belongsToMany(User, { through: 'Emprestimo' });
 
 module.exports = User;
