@@ -1,24 +1,28 @@
-const { validationResult } = require('express-validator');
-const User = require('../models/User');
+const Livro = require('../models/Livro');
 
-exports.add = (req, res) => {
-    return res.render('pages/create', { title: 'Adicionar' });
-}
+exports.home = async (req, res) => {
+    const results = await Livro.findAll();
+    return res.render('pages/home', { title: 'Página inicial', results });
+};
 
 exports.create = async (req, res) => {
-    const result = validationResult(req).formatWith(err => err.msg);
-    if (!result.isEmpty()) {
-        req.flash('errors', result.array());
-        res.redirect('back');
-        return;
-    }
-    const { firstName, lastName } = req.body;
-    await User.create({ firstName, lastName });
-    req.flash('success', 'Usuário adicionado com sucesso!');
+    const { titulo, ano, autor, editora, quantidade } = req.body;
+    await Livro.create({ titulo, ano, autor, editora, quantidade });
+    req.flash('success', 'Livro adicionado com sucesso!');
     return res.redirect('/');
-}
+};
 
-exports.show = async (req, res) => {
-    const results = await User.findAll();
-    return res.render('pages/read', { title: 'Mostrar', results });
+exports.update = async (req, res) => {
+    const id = req.params.id;
+    const { titulo, ano, autor, editora, quantidade } = req.body;
+    await Livro.update({ titulo, ano, autor, editora, quantidade }, { where: { id } });
+    req.flash('success', 'Livro atualizado com sucesso!');
+    return res.redirect('/');
+};
+
+exports.delete = async (req, res) => {
+    const id = req.params.id;
+    await Livro.destroy({ where: { id } });
+    req.flash('success', 'Livro deletado com sucesso!');
+    return res.redirect('/');
 };
