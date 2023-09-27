@@ -11,9 +11,9 @@ exports.new = (req, res) => {
 
 exports.create = async (req, res) => {
     const { titulo, ano, autor, editora, quantidade } = req.body;
-    await Livro.create({ titulo, ano, autor, editora, quantidade });
+    const { id } = await Livro.create({ titulo, ano, autor, editora, quantidade });
     req.flash('success', 'Livro adicionado com sucesso!');
-    return res.redirect('/');
+    return res.redirect(`/#${id}`);
 };
 
 exports.edit = async (req, res) => {
@@ -27,7 +27,7 @@ exports.update = async (req, res) => {
     const { titulo, ano, autor, editora, quantidade } = req.body;
     await Livro.update({ titulo, ano, autor, editora, quantidade }, { where: { id } });
     req.flash('success', 'Livro atualizado com sucesso!');
-    return res.redirect('/');
+    return res.redirect(`/#${id}`);
 };
 
 exports.delete = async (req, res) => {

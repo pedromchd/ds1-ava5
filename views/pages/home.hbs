@@ -4,18 +4,22 @@
     {{#if results}}
     <table>
         <tr>
+            <th>#</th>
             <th>Título</th>
             <th>Ano</th>
             <th>Autor</th>
             <th>Editora</th>
+            <th>Qnt.</th>
             <th>Opções</th>
         </tr>
         {{#each results}}
         <tr>
+            <td id="{{id}}">{{id}}</td>
             <td>{{titulo}}</td>
             <td>{{ano}}</td>
             <td>{{autor}}</td>
             <td>{{editora}}</td>
+            <td>{{quantidade}}</td>
             <td>
                 <a href="/edit/{{id}}">Editar</a>
                 <a href="/delete/{{id}}" onclick="return confirm('Deletar livro?')">Deletar</a>
@@ -24,6 +28,9 @@
         {{/each}}
     </table>
     {{else}}
-    <p>Sem resultados.</p>
+    <p>Não há livros na sua biblioteca.</p>
     {{/if}}
+    {{#with success}}
+    <p>{{this}}</p>
+    {{/with}}
 </main>
