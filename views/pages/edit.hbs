@@ -1,0 +1,17 @@
+<main>
+    <h2>Editar livro:</h2>
+    {{#with result}}
+    <form action="/edit/{{id}}" method="post">
+        <label for="titulo">Título:</label>
+        <input type="text" name="titulo" id="titulo" value="{{titulo}}">
+        <label for="ano">Ano:</label>
+        <input type="number" name="ano" id="ano" value="{{ano}}">
+        <label for="autor">Autor:</label>
+        <input type="text" name="autor" id="autor" value="{{autor}}">
+        <label for="editora">Editora:</label>
+        <input type="text" name="editora" id="editora" value="{{editora}}">
+        <input type="hidden" name="quantidade" value="1">
+        <button type="submit">Enviar</button>
+    </form>
+    {{/with}}
+</main>

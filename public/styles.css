@@ -1,3 +1,29 @@
 * {
     font-family: 'Courier New', Courier, monospace;
 }
+
+body {
+    padding: 1rem;
+}
+
+body * + * {
+    margin-top: 1rem;
+}
+
+h1, h2 {
+    font-size: revert;
+    font-weight: revert;
+    margin-bottom: revert;
+}
+
+input, button,
+table, tr, th, td,
+a {
+    all: revert;
+}
+
+table, th, td {
+    border-collapse: collapse;
+    border: 1px solid #000;
+    padding: 0.5rem;
+}

@@ -5,11 +5,21 @@ exports.home = async (req, res) => {
     return res.render('pages/home', { title: 'Página inicial', results });
 };
 
+exports.new = (req, res) => {
+    return res.render('pages/new', { title: 'Adicionar livro' })
+};
+
 exports.create = async (req, res) => {
     const { titulo, ano, autor, editora, quantidade } = req.body;
     await Livro.create({ titulo, ano, autor, editora, quantidade });
     req.flash('success', 'Livro adicionado com sucesso!');
     return res.redirect('/');
+};
+
+exports.edit = async (req, res) => {
+    const id = req.params.id;
+    const result = await Livro.findByPk(id);
+    return res.render('pages/edit', { title: 'Editar livro', result });
 };
 
 exports.update = async (req, res) => {
