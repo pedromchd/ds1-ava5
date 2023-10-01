@@ -25,7 +25,7 @@ app.use(flash());
 app.use((req, res, next) => {
     res.locals.success = req.flash('success');
     res.locals.errors = req.flash('errors');
-    res.locals.error = req.session.error;
+    res.locals.session = req.session;
     next();
 });
 
