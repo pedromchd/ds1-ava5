@@ -10,7 +10,7 @@
         <input type="password" name="senha" id="senha">
         <button type="submit">Enviar</button>
     </form>
-    {{#each errors}}
-    <p>{{this}}</p>
+    {{#each errors as | error |}}
+    <p>{{error}}</p>
     {{/each}}
 </main>
