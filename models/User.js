@@ -1,6 +1,5 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
-const Livro = require('./Livro')
 
 const User = sequelize.define('User', {
     id: {
@@ -24,8 +23,5 @@ const User = sequelize.define('User', {
 }, {
     timestamps: false
 });
-
-User.belongsToMany(Livro, { through: 'Emprestimo' });
-Livro.belongsToMany(User, { through: 'Emprestimo' });
 
 module.exports = User;
