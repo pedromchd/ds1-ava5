@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-
+const { validationResult } = require('express-validator');
 const User = require('../models/User');
 
 exports.login = (req, res) => {
@@ -25,6 +25,11 @@ exports.cadastro = (req, res) => {
 };
 
 exports.create = async (req, res) => {
+    const result = validationResult(req).formatWith(err => err.msg);
+    if (!result.isEmpty()) {
+        req.flash('errors', result.array());
+        return res.redirect('back');
+    }
     const { nome, email, senha } = req.body;
     const hash = await bcrypt.hash(senha, 10);
     await User.create({ nome, email, senha: hash });
