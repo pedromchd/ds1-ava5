@@ -18,11 +18,17 @@ router.post('/cadastro', checkSchema({
 }), authController.register);
 router.get('/logout', authController.logout);
 
-router.get('/', livroController.home);
-router.get('/new', livroController.new);
-router.post('/new', livroController.create);
-router.get('/edit/:id', livroController.edit)
-router.post('/edit/:id', livroController.update);
-router.get('/delete/:id', livroController.delete);
+router.get('/admin', (req, res) => res.redirect('/admin/home'));
+router.all('/admin/*', (req, res, next) => {
+    if (!req.session.user) { return res.status(401).redirect('/login'); }
+    if (req.session.user.id !== 1) { return res.status(403).redirect('/login'); }
+    next();
+});
+router.get('/admin/home', livroController.home);
+router.get('/admin/new', livroController.new);
+router.post('/admin/new', livroController.create);
+router.get('/admin/edit/:id', livroController.edit)
+router.post('/admin/edit/:id', livroController.update);
+router.get('/admin/delete/:id', livroController.delete);
 
 module.exports = router;

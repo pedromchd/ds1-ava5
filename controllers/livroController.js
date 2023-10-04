@@ -2,11 +2,11 @@ const Livro = require('../models/Livro');
 
 exports.home = async (req, res) => {
     const results = await Livro.findAll();
-    return res.render('pages/home', { title: 'Página inicial', results });
+    return res.render('admin/home', { title: 'Página inicial', results });
 };
 
 exports.new = (req, res) => {
-    return res.render('pages/new', { title: 'Adicionar livro' })
+    return res.render('admin/new', { title: 'Adicionar livro' })
 };
 
 exports.create = async (req, res) => {
@@ -19,7 +19,7 @@ exports.create = async (req, res) => {
 exports.edit = async (req, res) => {
     const id = req.params.id;
     const result = await Livro.findByPk(id);
-    return res.render('pages/edit', { title: 'Editar livro', result });
+    return res.render('admin/edit', { title: 'Editar livro', result });
 };
 
 exports.update = async (req, res) => {
