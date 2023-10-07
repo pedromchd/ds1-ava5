@@ -5,7 +5,7 @@
     {{else}}
     <a href="/login">Fazer login</a>
     {{/with}}
-    <a href="/admin/new">Adicionar livro</a>
+    <a href="/admin/livro/new">Adicionar livro</a>
     <h2>Meus livros:</h2>
     {{#if results}}
     <table>
@@ -27,8 +27,8 @@
             <td>{{editora}}</td>
             <td>{{quantidade}}</td>
             <td>
-                <a href="/admin/edit/{{id}}">Editar</a>
-                <a href="/admin/delete/{{id}}" onclick="return confirm('Deletar livro?')">Deletar</a>
+                <a href="/admin/livro/edit/{{id}}">Editar</a>
+                <a href="/admin/livro/delete/{{id}}" onclick="return confirm('Deletar livro?')">Deletar</a>
             </td>
         </tr>
         {{/each}}

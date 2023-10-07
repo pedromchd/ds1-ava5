@@ -1,8 +1,8 @@
 <main>
-    <a href="/">Página inicial</a>
+    <a href="/admin/">Página inicial</a>
     <h2>Editar livro:</h2>
     {{#with result}}
-    <form action="/admin/edit/{{id}}" method="post">
+    <form action="/admin/livro/edit/{{id}}" method="post">
         <label for="titulo">Título:</label>
         <input type="text" name="titulo" id="titulo" value="{{titulo}}">
         <label for="ano">Ano:</label>
