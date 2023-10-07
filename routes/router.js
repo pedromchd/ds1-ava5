@@ -2,9 +2,15 @@ const express = require('express');
 const { checkSchema } = require('express-validator');
 const authController = require('../controllers/authController');
 const livroController = require('../controllers/livroController');
+const libController = require('../controllers/libController');
 
 const router = express.Router();
 
+// Library homepage
+router.get('/', (req, res) => res.redirect('/home'));
+router.get('/home', libController.home);
+
+// Login and register
 router.get('/login', authController.login);
 router.post('/login', checkSchema({
     email: { trim: true, isEmail: { errorMessage: 'Insira um email válido.' } },
@@ -18,6 +24,7 @@ router.post('/cadastro', checkSchema({
 }), authController.register);
 router.get('/logout', authController.logout);
 
+// Admin book CRUD
 router.get('/admin', (req, res) => res.redirect('/admin/home'));
 router.all('/admin/*', (req, res, next) => {
     if (!req.session.user) { return res.status(401).redirect('/login'); }
