@@ -11,22 +11,22 @@ const router = express.Router();
 router.get('/', libController.home);
 
 // Login and register
-router.get('/login', authController.login);
-router.post('/login', checkSchema({
+router.get('/auth/login', authController.login);
+router.post('/auth/login', checkSchema({
     email: { trim: true, isEmail: { errorMessage: 'Insira um email válido.' } },
     senha: { notEmpty: { errorMessage: 'Insira uma senha válida.' } }
 }), authController.auth);
-router.get('/cadastro', authController.cadastro);
-router.post('/cadastro', checkSchema({
+router.get('/auth/cadastro', authController.cadastro);
+router.post('/auth/cadastro', checkSchema({
     nome: { trim: true, notEmpty: { errorMessage: 'Insira um nome válido.' } },
     email: { trim: true, isEmail: { errorMessage: 'Insira um email válido.' } },
     senha: { notEmpty: { errorMessage: 'Insira uma senha válida.' } }
 }), authController.register);
-router.get('/logout', authController.logout);
+router.get('/auth/logout', authController.logout);
 
 // Admin homepage
 router.all('/admin(/*)?', (req, res, next) => {
-    if (!req.session.user) { return res.status(401).redirect('/login'); }
+    if (!req.session.user) { return res.status(401).redirect('/auth/login'); }
     if (req.session.user.id !== 1) { return res.status(403).redirect('/'); }
     next();
 });

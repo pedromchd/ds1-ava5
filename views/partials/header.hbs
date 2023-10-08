@@ -1,8 +1,8 @@
 <header>
     <h1>Biblioteca de Alexandria</h1>
     {{#with session.user}}
-    <p>Usuário: {{nome}} <a href="/logout">logout</a></p>
+    <p>Usuário: {{nome}} <a href="/auth/logout">logout</a></p>
     {{else}}
-    <span><a href="/login">login</a><a href="/cadastro">cadastro</a></span>
+    <span><a href="/auth/login">login</a><a href="/auth/cadastro">cadastro</a></span>
     {{/with}}
 </header>

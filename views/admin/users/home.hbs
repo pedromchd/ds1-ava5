@@ -1,9 +1,9 @@
 <main>
     {{#with session.user}}
     <p>Logado como: {{nome}}</p>
-    <a href="/logout">Logout</a>
+    <a href="/auth/logout">Logout</a>
     {{else}}
-    <a href="/login">Fazer login</a>
+    <a href="/auth/login">Fazer login</a>
     {{/with}}
     <a href="/admin/user/new">Adicionar user</a>
     <h2>Meus users:</h2>

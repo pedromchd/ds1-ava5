@@ -1,9 +1,9 @@
 <main>
     {{#with session.user}}
     <p>Logado como: {{nome}}</p>
-    <a href="/logout">Logout</a>
+    <a href="/auth/logout">Logout</a>
     {{else}}
-    <a href="/login">Fazer login</a>
+    <a href="/auth/login">Fazer login</a>
     {{/with}}
     <a href="/admin/livro/new">Adicionar livro</a>
     <h2>Meus livros:</h2>
