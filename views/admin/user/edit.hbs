@@ -1,0 +1,18 @@
+<main>
+    <a href="/admin/">Página inicial</a>
+    <h2>Editar user:</h2>
+    {{#with result}}
+    <form action="/admin/user/edit/{{id}}" method="post">
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" id="nome" value="{{nome}}">
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" value="{{email}}">
+        <label for="senha">Senha:</label>
+        <input type="password" name="senha" id="senha">
+        <button type="submit">Enviar</button>
+    </form>
+    {{#each errors as | error |}}
+    <p>{{error}}</p>
+    {{/each}}
+    {{/with}}
+</main>
