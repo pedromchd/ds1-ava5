@@ -49,7 +49,7 @@ exports.register = async (req, res) => {
     const hash = await bcrypt.hash(senha, 10);
     await User.create({ nome, email, senha: hash });
     req.flash('success', 'Usuário cadastrado com sucesso!');
-    return res.redirect('/');
+    return res.redirect('/auth/login');
 };
 
 exports.logout = (req, res) => {
