@@ -4,11 +4,11 @@ const User = require('../models/User');
 
 exports.home = async (req, res) => {
     const results = await User.findAll();
-    return res.render('admin/user/home', { title: 'Página inicial', results });
+    return res.render('admin/users/home', { title: 'Página inicial', results });
 };
 
 exports.new = (req, res) => {
-    return res.render('admin/user/new', { title: 'Adicionar user' })
+    return res.render('admin/users/new', { title: 'Adicionar user' })
 };
 
 exports.create = async (req, res) => {
@@ -26,13 +26,13 @@ exports.create = async (req, res) => {
     const hash = await bcrypt.hash(senha, 10);
     const { id } = await User.create({ nome, email, senha: hash });
     req.flash('success', 'User adicionado com sucesso!');
-    return res.redirect(`/admin/user#${id}`);
+    return res.redirect(`/admin/users#${id}`);
 };
 
 exports.edit = async (req, res) => {
     const id = req.params.id;
     const result = await User.findByPk(id);
-    return res.render('admin/user/edit', { title: 'Editar user', result });
+    return res.render('admin/users/edit', { title: 'Editar user', result });
 };
 
 exports.update = async (req, res) => {
@@ -46,12 +46,12 @@ exports.update = async (req, res) => {
     const hash = await bcrypt.hash(senha, 10);
     await User.update({ nome, email, senha: hash }, { where: { id } });
     req.flash('success', 'User atualizado com sucesso!');
-    return res.redirect(`/admin/user#${id}`);
+    return res.redirect(`/admin/users#${id}`);
 };
 
 exports.delete = async (req, res) => {
     const id = req.params.id;
     await User.destroy({ where: { id } });
     req.flash('success', 'User deletado com sucesso!');
-    return res.redirect('/admin/user');
+    return res.redirect('/admin/users');
 };
