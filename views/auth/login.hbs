@@ -1,14 +1,19 @@
 <main>
-    <a href="/cadastro">Cadastrar-se</a>
-    <h2>Login:</h2>
-    <form action="/login" method="post">
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="email">
-        <label for="senha">Senha:</label>
-        <input type="password" name="senha" id="senha">
-        <button type="submit">Enviar</button>
-    </form>
-    {{#each errors as | error |}}
-    <p>{{error}}</p>
-    {{/each}}
+    <section>
+        <h2>Login:</h2>
+        <form action="/login" method="post">
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email">
+            </div>
+            <div>
+                <label for="senha">Senha:</label>
+                <input type="password" name="senha" id="senha">
+            </div>
+            <button type="submit">Enviar</button>
+        </form>
+        {{#each errors as | error |}}
+        <p>{{error}}</p>
+        {{/each}}
+    </section>
 </main>

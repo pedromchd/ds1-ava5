@@ -1,24 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
+
 * {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Open Sans', sans-serif;
 }
 
 body {
+    min-height: 100vh;
+    background: #F9C74F;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    padding: 1rem;
+    background: #F8961E;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+header a {
+    margin-left: 1rem;
+    padding-block: 0.5rem;
+    padding-inline: 1.25rem;
+    font-weight: 600;
+    background: #F3722C;
+    border-radius: 0.5rem;
+    box-shadow: 5px 5px;
+}
+
+main {
+    flex-grow: 1;
+    display: grid;
+    place-items: center;
+}
+
+footer {
+    font-weight: 300;
     padding: 1rem;
 }
 
-body * + * {
-    margin-top: 1rem;
-}
-
-h1, h2 {
-    font-size: revert;
-    font-weight: revert;
-    margin-bottom: revert;
-}
-
 input, button,
-table, tr, th, td,
-a {
+table, tr, th, td {
     all: revert;
 }
 

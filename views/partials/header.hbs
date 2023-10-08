@@ -1,3 +1,8 @@
-<head>
+<header>
     <h1>Biblioteca de Alexandria</h1>
-</head>
+    {{#with session.user}}
+    <p>Usuário: {{nome}} <a href="/logout">logout</a></p>
+    {{else}}
+    <span><a href="/login">login</a><a href="/cadastro">cadastro</a></span>
+    {{/with}}
+</header>
