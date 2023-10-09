@@ -8,7 +8,10 @@ const libController = require('../controllers/libController');
 const router = express.Router();
 
 // Biblioteca homepage
-router.get('/', libController.home);
+router.get('/', (req, res, next) => {
+    if (!req.session.user) { return res.status(401).redirect('/auth/login'); }
+    next();
+}, libController.home);
 
 // Login and register
 router.get('/auth/login', authController.login);
@@ -50,7 +53,7 @@ router.post('/admin/livros/edit/:id', checkSchema({
     editora: { trim: true, notEmpty: { errorMessage: 'Insira uma editora válida.' } },
     quantidade: { trim: true, notEmpty: { errorMessage: 'Insira uma quantidade válida.' } }
 }), livroController.update);
-router.get('/admin/livro/delete/:id', livroController.delete);
+router.get('/admin/livros/delete/:id', livroController.delete);
 
 // Admin user CRUD
 router.get('/admin/users(/)?', userController.home);

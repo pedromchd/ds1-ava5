@@ -1,42 +1,40 @@
-<main>
-    {{#with session.user}}
-    <p>Logado como: {{nome}}</p>
-    <a href="/auth/logout">Logout</a>
-    {{else}}
-    <a href="/auth/login">Fazer login</a>
-    {{/with}}
-    <a href="/admin/livro/new">Adicionar livro</a>
-    <h2>Meus livros:</h2>
-    {{#if results}}
-    <table>
-        <tr>
-            <th>#</th>
-            <th>Título</th>
-            <th>Ano</th>
-            <th>Autor</th>
-            <th>Editora</th>
-            <th>Qnt.</th>
-            <th>Opções</th>
-        </tr>
-        {{#each results}}
-        <tr>
-            <td id="{{id}}">{{id}}</td>
-            <td>{{titulo}}</td>
-            <td>{{ano}}</td>
-            <td>{{autor}}</td>
-            <td>{{editora}}</td>
-            <td>{{quantidade}}</td>
-            <td>
-                <a href="/admin/livro/edit/{{id}}">Editar</a>
-                <a href="/admin/livro/delete/{{id}}" onclick="return confirm('Deletar livro?')">Deletar</a>
-            </td>
-        </tr>
-        {{/each}}
-    </table>
-    {{else}}
-    <p>Não há livros na sua biblioteca.</p>
-    {{/if}}
-    {{#with success}}
-    <p>{{this}}</p>
-    {{/with}}
+<main class="home">
+    <section>
+        {{#with success}}
+        <div class="success">
+            <p>{{this}}</p>
+        </div>
+        {{/with}}
+        <h2>Meus livros:</h2>
+        <a href="/admin/livros/new">Adicionar livro</a>
+        {{#if results}}
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Título</th>
+                <th>Ano</th>
+                <th>Autor</th>
+                <th>Editora</th>
+                <th>Qnt.</th>
+                <th>Opções</th>
+            </tr>
+            {{#each results}}
+            <tr>
+                <td id="{{id}}">{{id}}</td>
+                <td>{{titulo}}</td>
+                <td>{{ano}}</td>
+                <td>{{autor}}</td>
+                <td>{{editora}}</td>
+                <td>{{quantidade}}</td>
+                <td>
+                    <a href="/admin/livros/edit/{{id}}">Editar</a>
+                    <a href="/admin/livros/delete/{{id}}" onclick="return confirm('Deletar livro?')">Deletar</a>
+                </td>
+            </tr>
+            {{/each}}
+        </table>
+        {{else}}
+        <p>Não há livros na sua biblioteca.</p>
+        {{/if}}
+    </section>
 </main>

@@ -1,36 +1,34 @@
-<main>
-    {{#with session.user}}
-    <p>Logado como: {{nome}}</p>
-    <a href="/auth/logout">Logout</a>
-    {{else}}
-    <a href="/auth/login">Fazer login</a>
-    {{/with}}
-    <a href="/admin/user/new">Adicionar user</a>
-    <h2>Meus users:</h2>
-    {{#if results}}
-    <table>
-        <tr>
-            <th>#</th>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Opções</th>
-        </tr>
-        {{#each results}}
-        <tr>
-            <td id="{{id}}">{{id}}</td>
-            <td>{{nome}}</td>
-            <td>{{email}}</td>
-            <td>
-                <a href="/admin/user/edit/{{id}}">Editar</a>
-                <a href="/admin/user/delete/{{id}}" onclick="return confirm('Deletar user?')">Deletar</a>
-            </td>
-        </tr>
-        {{/each}}
-    </table>
-    {{else}}
-    <p>Não há users na sua biblioteca.</p>
-    {{/if}}
-    {{#with success}}
-    <p>{{this}}</p>
-    {{/with}}
+<main class="home">
+    <section>
+        {{#with success}}
+        <div class="success">
+            <p>{{this}}</p>
+        </div>
+        {{/with}}
+        <h2>Meus users:</h2>
+        <a href="/admin/users/new">Adicionar user</a>
+        {{#if results}}
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Opções</th>
+            </tr>
+            {{#each results}}
+            <tr>
+                <td id="{{id}}">{{id}}</td>
+                <td>{{nome}}</td>
+                <td>{{email}}</td>
+                <td>
+                    <a href="/admin/users/edit/{{id}}">Editar</a>
+                    <a href="/admin/users/delete/{{id}}" onclick="return confirm('Deletar user?')">Deletar</a>
+                </td>
+            </tr>
+            {{/each}}
+        </table>
+        {{else}}
+        <p>Não há users na sua biblioteca.</p>
+        {{/if}}
+    </section>
 </main>

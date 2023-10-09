@@ -1,18 +1,29 @@
-<main>
-    <a href="/admin/">Página inicial</a>
-    <h2>Editar user:</h2>
-    {{#with result}}
-    <form action="/admin/user/edit/{{id}}" method="post">
-        <label for="nome">Nome:</label>
-        <input type="text" name="nome" id="nome" value="{{nome}}">
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="email" value="{{email}}">
-        <label for="senha">Senha:</label>
-        <input type="password" name="senha" id="senha">
-        <button type="submit">Enviar</button>
-    </form>
-    {{#each errors as | error |}}
-    <p>{{error}}</p>
-    {{/each}}
-    {{/with}}
+<main class="form">
+    <section>
+        <h2>Editar user:</h2>
+        {{#with result}}
+        <form action="/admin/users/edit/{{id}}" method="post">
+            <div>
+                <label for="nome">Nome:</label>
+                <input type="text" name="nome" id="nome" value="{{nome}}">
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" value="{{email}}">
+            </div>
+            <div>
+                <label for="senha">Senha:</label>
+                <input type="password" name="senha" id="senha">
+            </div>
+            <button type="submit">Enviar</button>
+            {{#with errors}}
+            <ul class="errors">
+                {{#each this as | error |}}
+                <li>{{error}}</li>
+                {{/each}}
+            </ul>
+            {{/with}}
+        </form>
+        {{/with}}
+    </section>
 </main>

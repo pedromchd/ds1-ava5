@@ -35,6 +35,7 @@ header a {
 }
 
 main {
+    padding: 1rem;
     flex-grow: 1;
     display: grid;
     place-items: center;
@@ -43,6 +44,19 @@ main {
 footer {
     font-weight: 300;
     padding: 1rem;
+}
+
+section {
+    padding: 1rem;
+    background: #f8961e;
+    border-radius: 0.5rem;
+    box-shadow: 5px 5px;
+}
+
+h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    text-align: center;
 }
 
 input, button,
@@ -74,19 +88,6 @@ ul.errors {
     font-size: 1.25rem;
 }
 
-.form h2 {
-    font-size: 1.75rem;
-    font-weight: 600;
-    text-align: center;
-}
-
-.form section {
-    padding: 1rem;
-    background: #f8961e;
-    border-radius: 0.5rem;
-    box-shadow: 5px 5px;
-}
-
 .form * + * {
     margin-top: 0.5rem;
 }
@@ -109,4 +110,30 @@ ul.errors {
     background: #f3722c;
     border-radius: 0.5rem;
     box-shadow: 5px 5px;
+}
+
+.home a {
+    display: inline-block;
+}
+
+.home section > a {
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    text-decoration: underline;
+}
+
+.home table {
+    background: #f9c74f;
+    min-width: 50rem;
+}
+
+.home table td {
+    padding: 0.5rem;
+}
+
+.home table a {
+    padding-block: 0.5rem;
+    padding-inline: 1.25rem;
+    background: #f3722c;
+    border-radius: 0.5rem;
 }
