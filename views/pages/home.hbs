@@ -1,36 +1,58 @@
-<main>
-    {{#with session.user}}
-    <p>Logado como: {{nome}}</p>
-    <a href="/auth/logout">Logout</a>
-    {{else}}
-    <a href="/auth/login">Fazer login</a>
-    {{/with}}
-    <h2>Meus livros:</h2>
-    {{#if results}}
-    <table>
-        <tr>
-            <th>#</th>
-            <th>Título</th>
-            <th>Ano</th>
-            <th>Autor</th>
-            <th>Editora</th>
-            <th>Qnt.</th>
-        </tr>
-        {{#each results}}
-        <tr>
-            <td id="{{id}}">{{id}}</td>
-            <td>{{titulo}}</td>
-            <td>{{ano}}</td>
-            <td>{{autor}}</td>
-            <td>{{editora}}</td>
-            <td>{{quantidade}}</td>
-        </tr>
-        {{/each}}
-    </table>
-    {{else}}
-    <p>Não há livros na sua biblioteca.</p>
-    {{/if}}
-    {{#with success}}
-    <p>{{this}}</p>
-    {{/with}}
+<main class="home">
+    <section>
+        {{#with success}}
+        <div class="success">
+            <p>{{this}}</p>
+        </div>
+        {{/with}}
+        {{#with errors}}
+        <ul class="errors">
+            {{#each this as | error |}}
+            <li>{{error}}</li>
+            {{/each}}
+        </ul>
+        {{/with}}
+        <form action="/search" method="get">
+            <label for="q">Pesquisar por nome:</label>
+            <input type="search" name="q" id="q" value="{{query}}">
+            <button type="submit">Pesquisar</button>
+        </form>
+        <h2>Livros para empréstimo:</h2>
+        {{#if results}}
+        <table>
+            <tr>
+                <th>Título</th>
+                <th>Ano</th>
+                <th>Autor</th>
+                <th>Editora</th>
+                <th>Situação</th>
+                <th>Opções</th>
+            </tr>
+            {{#each results}}
+            <tr>
+                <td>{{titulo}}</td>
+                <td>{{ano}}</td>
+                <td>{{autor}}</td>
+                <td>{{editora}}</td>
+                <td>
+                    {{#if quantidade}}
+                    {{quantidade}} disponíveis  
+                    {{else}}
+                    Indisponível
+                    {{/if}}
+                </td>
+                <td>
+                    {{#if quantidade}}
+                    <a href="/alugar/{{id}}-{{quantidade}}">Alugar</a>
+                    {{else}}
+                    Indisponível
+                    {{/if}}
+                </td>
+            </tr>
+            {{/each}}
+        </table>
+        {{else}}
+        <p>A biblioteca está vazia.</p>
+        {{/if}}
+    </section>
 </main>

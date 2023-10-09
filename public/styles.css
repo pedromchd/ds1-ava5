@@ -137,3 +137,12 @@ ul.errors {
     background: #f3722c;
     border-radius: 0.5rem;
 }
+
+.admin a {
+    padding-block: 5rem;
+    padding-inline: 5rem;
+    font-weight: 800;
+    background: #f3722c;
+    border-radius: 1rem;
+    box-shadow: 5px 5px;
+}

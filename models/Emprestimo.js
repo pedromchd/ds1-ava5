@@ -5,18 +5,25 @@ const User = require('./User');
 const Livro = require('./Livro');
 
 const Emprestimo = sequelize.define('Emprestimo', {
-    user: {
+    id: {
         type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    UserId: {
+        type: DataTypes.INTEGER,
+        unique: false,
         references: {
             model: User,
-            key: id
+            key: 'id'
         }
     },
-    livro: {
+    LivroId: {
         type: DataTypes.INTEGER,
+        unique: false,
         references: {
             model: Livro,
-            key: id
+            key: 'id'
         }
     }
 });

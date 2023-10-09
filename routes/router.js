@@ -12,6 +12,8 @@ router.get('/', (req, res, next) => {
     if (!req.session.user) { return res.status(401).redirect('/auth/login'); }
     next();
 }, libController.home);
+router.get('/alugar/:id-:qnt', libController.alugar);
+router.get('/search', libController.search);
 
 // Login and register
 router.get('/auth/login', authController.login);
